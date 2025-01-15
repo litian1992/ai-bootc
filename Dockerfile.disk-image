@@ -1,0 +1,4 @@
+FROM registry.access.redhat.com/ubi9/ubi:9.4
+
+
+COPY output/qcow2/disk.qcow2 /podvm.qcow2

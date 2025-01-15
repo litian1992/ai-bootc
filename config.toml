@@ -1,0 +1,17 @@
+[[customizations.user]]
+name = "root"
+password = "<set>"
+key = "<set>"
+groups = ["wheel", "root"]
+
+[[customizations.filesystem]]
+mountpoint = "/"
+minsize = "5 GiB"
+
+# Only supported for ext4 rootfs
+[[customizations.filesystem]]
+mountpoint = "/var/data"
+minsize = "15 GiB"
+
+[customizations.kernel]
+append = "selinux=0 enforcing=0 audit=0"
