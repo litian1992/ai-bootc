@@ -1,4 +1,4 @@
-FROM registry.redhat.io/rhel9/rhel-bootc:9.5
+FROM registry.redhat.io/rhel9/rhel-bootc:9.6
 
 ARG ORG_ID
 ARG ACTIVATION_KEY
@@ -23,14 +23,3 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN  pip install instructlab && \
      pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
      pip install hf_transfer
-
-
-#RUN mkdir -p /usr/lib/bootc/install
-#RUN cat <<EOF >> /usr/lib/bootc/install/00-kargs.toml
-#[install.filesystem.root]
-#type = "ext4"
-#[install]
-#kargs = [ "console=ttyS0", "selinux=0", "enforcing=0", "audit=0"]
-#match-architectures = ["x86_64"]
-#EOF
-
