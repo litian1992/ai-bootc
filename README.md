@@ -13,7 +13,7 @@ export ACTIVATION_KEY=<set>
 Set bootc image name
 
 ```bash
-export BOOTC_IMAGE=quay.io/bpradipt/ai-bootc
+export BOOTC_IMAGE=quay.io/litian/ai-bootc
 ```
 
 Build the bootc image
@@ -47,10 +47,18 @@ Now you can create CVM from this VHD. After that, run this trustee client contai
 For attestation, you can download the kbs-client container image and use the same to interact with Trustee
 
 ```bash
-podman pull quay.io/bpradipt/kbs-client:vtpm
-podman run -it --device /dev/tpm0 quay.io/bpradipt/kbs-client:vtpm
+podman pull quay.io/litian/kbs-client:latest
+podman run -it --device /dev/tpm0 quay.io/litian/kbs-client:latest
 ```
-
+### Building Trustee client container
+If you wish to use your own Trustee client, build your container with `kbs-client/Dockerfile`.
+```
+cp kbs-client ai-bootc/kbs-client/
+cd ai-bootc/kbs-client
+podman build -t kbs-client .
+podman tag kbs-client:latest quay.io/myusername/kbs-client:latest
+podman push quay.io/myusername/kbs-client:latest
+```
 
 Reference
 https://github.com/containers/ai-lab-recipes/tree/main
